@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 20
+Create a company-managed Scrum project and add an Epic with at least two Stories and one Task.
+
+STEPS
+Create company-managed Scrum project. Create an Epic, at least two Stories, and one Task. Link children to Epic and verify hierarchy.

@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 32
+A. Create and configure Scrum Board. B. Create and start a Sprint. C. Complete Sprint and generate Sprint Report.
+
+STEPS
+Create/configure Scrum board. Create sprint, add issues, and start it. Complete sprint and open Sprint Report.

@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 6
+Configure the Jira mobile app, view an issue, update its status, add a comment, and assign it to a user.
+
+STEPS
+Install/sign in to Jira Cloud mobile app. Open an issue, change status, add a comment, change assignee, save, and verify activity/notifications.

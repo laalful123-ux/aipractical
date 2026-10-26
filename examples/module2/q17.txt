@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 17
+Add team members to a Jira project and assign suitable project roles.
+
+STEPS
+Open Project settings → People/Access. Add members, assign suitable roles, and verify.

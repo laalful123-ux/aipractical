@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 12
+Create a Jira Automation rule, test it, and enable it after verifying the trigger-condition-action sequence.
+
+STEPS
+Create an automation rule and select trigger. Add condition/action. Test on a sample issue, inspect audit log, then enable.

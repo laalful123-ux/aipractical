@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 10
+Customize a Jira workflow by adding statuses and transitions, then associate it with a project.
+
+STEPS
+Open Jira settings → Issues → Workflows (admin access may be needed). Add statuses/transitions, publish workflow, associate it through the workflow scheme, and test.

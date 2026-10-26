@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 5
+Create a Jira Automation rule with a trigger, condition, and action—for example, when an issue moves to Done, send a notification or auto-assign it.
+
+STEPS
+Open Automation → Create rule. Set trigger Issue transitioned; add condition status = Done; add action such as send notification or assign issue. Save, enable, and test.

@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 28
+Use the Jira mobile app to view and update an issue, add a comment, assign it, and check notifications.
+
+STEPS
+Install/sign in to Jira mobile. Open issue, update status, add comment, assign to user, and verify activity/notifications.

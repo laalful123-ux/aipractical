@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 34
+A. View and modify Project Permission Scheme. B. Configure Project Roles and assign permissions.
+
+STEPS
+Open project's permission scheme (admin access may be needed) and review/modify as required. Configure roles, assign users, and verify each role's permissions.

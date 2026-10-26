@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "aipractical"
+version = "1.0.0"
+description = "Searchable practical answer library for Module 1 Python AI/ML and Module 2 Jira"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+[project.scripts]
+answers = "aipractical.cli:main"
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.setuptools.package-data]
+aipractical = ["data.json"]

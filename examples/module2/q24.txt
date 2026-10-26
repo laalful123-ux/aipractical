@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 24
+Create an automation rule that assigns an issue when it is created or moved to a specified status, then test it.
+
+STEPS
+Create automation with Issue created or Issue transitioned trigger. Add status condition if needed; action = Assign issue. Save, enable, test, inspect audit log.

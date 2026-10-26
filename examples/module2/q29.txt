@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 29
+A. Create a Jira Cloud account and explore the dashboard. B. Create a Company-managed Scrum/Kanban Project. C. Configure project details.
+
+STEPS
+A. Sign in/create Jira Cloud account and explore dashboard. B. Create company-managed Scrum/Kanban project. C. Configure project name/key/details and inspect board.

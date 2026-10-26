@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 4
+Create an Epic and add related issues. Assign issues to users and set priority and due dates.
+
+STEPS
+Create an Epic. Create related Stories/Tasks and link them to the Epic. Set assignee, priority, and due date for each issue; save and verify.

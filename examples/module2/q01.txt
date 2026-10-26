@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 1
+Create a Jira Cloud project (Kanban), configure project details, and explore the project dashboard.
+
+STEPS
+Open Jira Cloud → Projects → Create project. Choose Kanban; create the project and set its name/key. Open its board/dashboard and inspect project settings.

@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 26
+Create project components and versions, then associate relevant issues with them.
+
+STEPS
+Create components and versions in Project settings. Open issue, select component and fix version, save, and verify.

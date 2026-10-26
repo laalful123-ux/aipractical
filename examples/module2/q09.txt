@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 9
+Create an Epic with Stories and Tasks, assign the issues, and set priority and due date.
+
+STEPS
+Create an Epic, then Stories and Tasks. Set each child issue's parent Epic. Assign issues, set priority/due date, and verify hierarchy.

@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 8
+Create and configure issue types, components, and versions in a Jira project.
+
+STEPS
+Open Project settings and configure issue types. Create components and versions/releases. Verify they are available on issues.

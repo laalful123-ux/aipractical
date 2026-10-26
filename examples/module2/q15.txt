@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 15
+Create a Jira project and configure a custom workflow, JQL filters, a dashboard with suitable gadgets, and an automation rule. Demonstrate the configuration and test the automation.
+
+STEPS
+Create project and configure workflow. Run JQL query and save as filter. Create dashboard and add gadgets using filter. Create/test automation and verify audit log.

@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 13
+Configure project roles and review the permissions granted to each role in a Jira project.
+
+STEPS
+Open Project settings → People/Roles. Review role assignments. Open Permissions/Permission scheme and inspect actions each role can perform.

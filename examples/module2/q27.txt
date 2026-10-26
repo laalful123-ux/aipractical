@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 27
+Use Jira filters and issue statistics to summarize issues by status, assignee, or priority.
+
+STEPS
+Open issue search and filter by project/status/assignee/priority. Save filter if required. Use Issue Statistics/dashboard gadget to group results.

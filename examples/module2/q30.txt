@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 30
+A. Add team members. B. Assign roles.
+
+STEPS
+Open project People/Access. Add team members, assign appropriate roles, and verify.

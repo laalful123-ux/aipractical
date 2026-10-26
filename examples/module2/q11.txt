@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 11
+Generate a Pie Chart or Issue Statistics report and add it to a custom Jira dashboard.
+
+STEPS
+Open Reports/Dashboards. Add Pie Chart or Issue Statistics gadget. Choose project/saved filter and statistic, save, and verify.

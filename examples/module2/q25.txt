@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 25
+Create a Scrum board, add a sprint, move issues into it, start the sprint, and view its report.
+
+STEPS
+Open Scrum board/backlog. Create sprint, move issues into it, start sprint, and open Reports → Sprint Report.

@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 31
+A. Design a custom workflow. B. Add transitions and conditions. C. Publish and associate workflow with a project.
+
+STEPS
+Open workflow administration and create/edit workflow. Add statuses, transitions, and conditions. Publish and associate with project's workflow scheme; test transitions.

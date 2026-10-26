@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 21
+Create and save a JQL filter for issues with a selected priority and status, then verify the results.
+
+STEPS
+Open Filters → Advanced issue search. Use: project = DEMO AND priority = High AND status = "In Progress" ORDER BY created DESC (replace DEMO with your project key). Run, verify, and save.

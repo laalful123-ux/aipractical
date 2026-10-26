@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 22
+Create a custom dashboard and add gadgets that display issue statistics.
+
+STEPS
+Open Dashboards → Create dashboard. Add Pie Chart, Filter Results, or Issue Statistics gadgets. Configure project/saved filter and save.

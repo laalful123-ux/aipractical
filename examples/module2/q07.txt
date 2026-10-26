@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 7
+Create a Scrum project and board, add issues to a sprint, start the sprint, and review sprint progress.
+
+STEPS
+Create/open a Scrum project and board. Create a sprint, add backlog issues, start it, and review progress/report.

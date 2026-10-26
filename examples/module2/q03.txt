@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 3
+Configure issue types (Epic, Story, Task, Bug), and create project components and versions.
+
+STEPS
+Open project settings and ensure Epic, Story, Task, Bug are available. Create required Components and Versions/Releases, then verify they appear on issues.

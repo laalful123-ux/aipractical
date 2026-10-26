@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 19
+Install and configure the Jira mobile app. View an issue and update its status, comment, and assignee.
+
+STEPS
+Install Jira mobile and sign in. Open issue, update status, add comment, change assignee, save, and verify activity.

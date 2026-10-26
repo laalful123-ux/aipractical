@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 33
+A. Generate Burndown Chart and Velocity Chart. B. Create Pie Chart / Issue Statistics Report. C. Create a Custom Dashboard with gadgets.
+
+STEPS
+Open Reports and inspect Burndown/Velocity charts. Create Pie Chart or Issue Statistics report/gadget. Create dashboard and configure gadgets.

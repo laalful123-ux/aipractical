@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 23
+Configure project roles and review how permissions control access to project activities.
+
+STEPS
+Open Project settings → People/Roles. Review membership and permission scheme for browse, create, edit, assign, and transition actions.

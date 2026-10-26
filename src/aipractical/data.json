@@ -1,0 +1,443 @@
+[
+  {
+    "module": 1,
+    "number": 1,
+    "question": "Define PEAS for a vacuum-cleaner agent. Classify its environment as fully/partially observable, deterministic/stochastic, and episodic/sequential. Implement a simple table-driven agent in Python.",
+    "kind": "python",
+    "answer": "table = {(\"A\",\"Dirty\"): \"Suck\", (\"A\",\"Clean\"): \"Right\", (\"B\",\"Dirty\"): \"Suck\", (\"B\",\"Clean\"): \"Left\"}\nlocation = input(\"Enter location (A/B): \").strip().upper()\nstatus = input(\"Enter status (Dirty/Clean): \").strip().title()\nprint(\"Action:\", table.get((location, status), \"No rule defined\"))"
+  },
+  {
+    "module": 1,
+    "number": 2,
+    "question": "Define PEAS for an autonomous taxi and classify its task environment using suitable examples.",
+    "kind": "python",
+    "answer": "print(\"Performance: safety, legal driving, travel time, comfort, fuel efficiency\")\nprint(\"Environment: roads, traffic, pedestrians, passengers, weather\")\nprint(\"Actuators: steering, accelerator, brakes, indicators\")\nprint(\"Sensors: cameras, GPS, radar/lidar, speed/proximity sensors\")\nprint(\"Classification: partially observable, stochastic, sequential, dynamic, multi-agent\")"
+  },
+  {
+    "module": 1,
+    "number": 3,
+    "question": "Implement Breadth-First Search (BFS) in Python to find the shortest path in an 8-puzzle. Use the given initial and goal configurations.",
+    "kind": "python",
+    "answer": "from collections import deque\ndef bfs(start, goal):\n    queue = deque([(start, [start])]); visited = {start}\n    while queue:\n        state, path = queue.popleft()\n        if state == goal: return path\n        z = state.index(0); r, c = divmod(z, 3)\n        options = ([z-3] if r>0 else []) + ([z+3] if r<2 else []) + ([z-1] if c>0 else []) + ([z+1] if c<2 else [])\n        for pos in options:\n            nxt = list(state); nxt[z], nxt[pos] = nxt[pos], nxt[z]; nxt = tuple(nxt)\n            if nxt not in visited:\n                visited.add(nxt); queue.append((nxt, path+[nxt]))\n    return None\nstart=(1,2,3,4,0,6,7,5,8); goal=(1,2,3,4,5,6,7,8,0)\npath=bfs(start, goal)\nif path:\n    for step,state in enumerate(path):\n        print(\"Step\",step)\n        for i in range(0,9,3): print(state[i:i+3])\nelse: print(\"No solution found\")"
+  },
+  {
+    "module": 1,
+    "number": 4,
+    "question": "Solve the 4-litre and 3-litre water-jug problem using Depth-First Search (DFS) to obtain exactly 2 litres. Display the sequence of states.",
+    "kind": "python",
+    "answer": "def dfs():\n    stack=[(0,0)]; parent={(0,0):None}; visited=set(); goal=None\n    while stack:\n        a,b=stack.pop()\n        if (a,b) in visited: continue\n        visited.add((a,b))\n        if a==2 or b==2: goal=(a,b); break\n        x,y=min(a,3-b),min(b,4-a)\n        for nxt in [(4,b),(a,3),(0,b),(a,0),(a-x,b+x),(a+y,b-y)]:\n            if nxt not in parent: parent[nxt]=(a,b); stack.append(nxt)\n    if goal is None: print(\"No solution\"); return\n    path=[]; cur=goal\n    while cur is not None: path.append(cur); cur=parent[cur]\n    print(\"State sequence (4L jug, 3L jug):\")\n    for state in reversed(path): print(state)\n    print(\"Goal reached:\",goal)\ndfs()"
+  },
+  {
+    "module": 1,
+    "number": 5,
+    "question": "Implement Linear Regression using scikit-learn on a suitable dataset. Display model predictions and an evaluation metric.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_diabetes\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_absolute_error, r2_score\nd=load_diabetes(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42)\nmodel=LinearRegression().fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred[:5]); print(\"Actual:\",y_test[:5])\nprint(\"MAE:\",mean_absolute_error(y_test,pred)); print(\"R2:\",r2_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 6,
+    "question": "Implement a Decision Tree classifier using the Iris dataset. Display predictions and classification accuracy.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nmodel=DecisionTreeClassifier(random_state=42).fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred); print(\"Accuracy:\",accuracy_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 7,
+    "question": "Implement Decision Tree Regression on a suitable regression dataset and display predictions with an evaluation metric.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_diabetes\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.tree import DecisionTreeRegressor\nfrom sklearn.metrics import mean_absolute_error,r2_score\nd=load_diabetes(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42)\nmodel=DecisionTreeRegressor(max_depth=5,random_state=42).fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred[:5]); print(\"MAE:\",mean_absolute_error(y_test,pred)); print(\"R2:\",r2_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 8,
+    "question": "Implement a k-Nearest Neighbors (kNN) classifier using scikit-learn. Split the dataset and display test accuracy.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nsc=StandardScaler(); X_train=sc.fit_transform(X_train); X_test=sc.transform(X_test)\nmodel=KNeighborsClassifier(n_neighbors=5).fit(X_train,y_train)\nprint(\"Accuracy:\",accuracy_score(y_test,model.predict(X_test)))"
+  },
+  {
+    "module": 1,
+    "number": 9,
+    "question": "Perform multiclass classification using Logistic Regression or a Decision Tree on a suitable dataset. Display the accuracy.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nmodel=LogisticRegression(max_iter=2000).fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred[:10]); print(\"Accuracy:\",accuracy_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 10,
+    "question": "Analyze a public dataset for class imbalance and possible bias. Display class counts and briefly discuss limitations in the data.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nimport pandas as pd\nd=load_iris(); df=pd.DataFrame(d.data,columns=d.feature_names); df[\"class\"]=d.target\nprint(\"Class counts:\"); print(df[\"class\"].value_counts().sort_index())\nprint(\"Missing values:\"); print(df.isnull().sum())\nprint(\"Limitations: Iris is small and may not represent real-world populations.\")"
+  },
+  {
+    "module": 1,
+    "number": 11,
+    "question": "Implement Naïve Bayes classification using a small dataset, and show how the dataset is divided into training and testing sets.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.naive_bayes import GaussianNB\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nprint(\"Training samples:\",len(X_train)); print(\"Testing samples:\",len(X_test))\nmodel=GaussianNB().fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred); print(\"Accuracy:\",accuracy_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 12,
+    "question": "Implement a machine-learning workflow using a suitable dataset: load with Pandas, handle missing values or scale features, split into training and testing sets, train a classifier, and display training and testing accuracy.",
+    "kind": "python",
+    "answer": "import pandas as pd\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); df=pd.DataFrame(d.data,columns=d.feature_names); df[\"target\"]=d.target\nX,y=df.drop(columns=\"target\"),df[\"target\"]\nX_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=42,stratify=y)\nmodel=make_pipeline(SimpleImputer(strategy=\"median\"),DecisionTreeClassifier(random_state=42)).fit(X_train,y_train)\nprint(\"Training accuracy:\",accuracy_score(y_train,model.predict(X_train)))\nprint(\"Testing accuracy:\",accuracy_score(y_test,model.predict(X_test)))"
+  },
+  {
+    "module": 1,
+    "number": 13,
+    "question": "Write a Python program to solve the 8-puzzle using Breadth-First Search (BFS) and display the sequence of moves.",
+    "kind": "python",
+    "answer": "from collections import deque\ndef bfs(start, goal):\n    queue = deque([(start, [start])]); visited = {start}\n    while queue:\n        state, path = queue.popleft()\n        if state == goal: return path\n        z = state.index(0); r, c = divmod(z, 3)\n        options = ([z-3] if r>0 else []) + ([z+3] if r<2 else []) + ([z-1] if c>0 else []) + ([z+1] if c<2 else [])\n        for pos in options:\n            nxt = list(state); nxt[z], nxt[pos] = nxt[pos], nxt[z]; nxt = tuple(nxt)\n            if nxt not in visited:\n                visited.add(nxt); queue.append((nxt, path+[nxt]))\n    return None\nstart=(1,2,3,4,0,6,7,5,8); goal=(1,2,3,4,5,6,7,8,0)\npath=bfs(start, goal)\nif path:\n    for step,state in enumerate(path):\n        print(\"Step\",step)\n        for i in range(0,9,3): print(state[i:i+3])\nelse: print(\"No solution found\")"
+  },
+  {
+    "module": 1,
+    "number": 14,
+    "question": "Use Depth-First Search (DFS) in Python to solve the 4-litre and 3-litre water-jug problem and obtain exactly 2 litres.",
+    "kind": "python",
+    "answer": "def dfs():\n    stack=[(0,0)]; parent={(0,0):None}; visited=set(); goal=None\n    while stack:\n        a,b=stack.pop()\n        if (a,b) in visited: continue\n        visited.add((a,b))\n        if a==2 or b==2: goal=(a,b); break\n        x,y=min(a,3-b),min(b,4-a)\n        for nxt in [(4,b),(a,3),(0,b),(a,0),(a-x,b+x),(a+y,b-y)]:\n            if nxt not in parent: parent[nxt]=(a,b); stack.append(nxt)\n    if goal is None: print(\"No solution\"); return\n    path=[]; cur=goal\n    while cur is not None: path.append(cur); cur=parent[cur]\n    print(\"State sequence (4L jug, 3L jug):\")\n    for state in reversed(path): print(state)\n    print(\"Goal reached:\",goal)\ndfs()"
+  },
+  {
+    "module": 1,
+    "number": 15,
+    "question": "Write a Python program applying Bayes’ Rule to calculate the probability of disease after a positive test result using the given scenario.",
+    "kind": "python",
+    "answer": "p_d=0.01; p_pos_d=0.99; p_pos_notd=0.05; p_notd=1-p_d\np_pos=p_pos_d*p_d+p_pos_notd*p_notd\np_d_pos=(p_pos_d*p_d)/p_pos\nprint(\"Probability:\",p_d_pos); print(\"Percentage:\",p_d_pos*100)"
+  },
+  {
+    "module": 1,
+    "number": 16,
+    "question": "Implement a Naïve Bayes classifier using scikit-learn on a small weather or spam dataset and display its prediction.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.naive_bayes import GaussianNB\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nprint(\"Training samples:\",len(X_train)); print(\"Testing samples:\",len(X_test))\nmodel=GaussianNB().fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred); print(\"Accuracy:\",accuracy_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 17,
+    "question": "Use the MNIST dataset to build a binary classifier for digit versus not-digit and evaluate its performance.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_digits\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score,classification_report\nd=load_digits(); X=d.data; y=(d.target==5).astype(int)\nX_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25,random_state=42,stratify=y)\nmodel=LogisticRegression(max_iter=5000).fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Accuracy:\",accuracy_score(y_test,pred)); print(classification_report(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 18,
+    "question": "Implement a k-Nearest Neighbors (kNN) classifier using a suitable dataset and evaluate its accuracy.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nsc=StandardScaler(); X_train=sc.fit_transform(X_train); X_test=sc.transform(X_test)\nmodel=KNeighborsClassifier(n_neighbors=5).fit(X_train,y_train)\nprint(\"Accuracy:\",accuracy_score(y_test,model.predict(X_test)))"
+  },
+  {
+    "module": 1,
+    "number": 19,
+    "question": "Perform multiclass classification using Logistic Regression or a Decision Tree on a suitable dataset.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nmodel=LogisticRegression(max_iter=2000).fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred[:10]); print(\"Accuracy:\",accuracy_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 20,
+    "question": "Select a public dataset and examine possible class imbalance by displaying the number of samples in each class.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nimport pandas as pd\nd=load_iris(); df=pd.DataFrame(d.data,columns=d.feature_names); df[\"class\"]=d.target\nprint(\"Class counts:\"); print(df[\"class\"].value_counts().sort_index())\nprint(\"Missing values:\"); print(df.isnull().sum())\nprint(\"Limitations: Iris is small and may not represent real-world populations.\")"
+  },
+  {
+    "module": 1,
+    "number": 21,
+    "question": "Write a Python program to solve a water-jug problem using DFS; use jug capacities of your choice and reach a specified target amount.",
+    "kind": "python",
+    "answer": "def dfs():\n    stack=[(0,0)]; parent={(0,0):None}; visited=set(); goal=None\n    while stack:\n        a,b=stack.pop()\n        if (a,b) in visited: continue\n        visited.add((a,b))\n        if a==2 or b==2: goal=(a,b); break\n        x,y=min(a,3-b),min(b,4-a)\n        for nxt in [(4,b),(a,3),(0,b),(a,0),(a-x,b+x),(a+y,b-y)]:\n            if nxt not in parent: parent[nxt]=(a,b); stack.append(nxt)\n    if goal is None: print(\"No solution\"); return\n    path=[]; cur=goal\n    while cur is not None: path.append(cur); cur=parent[cur]\n    print(\"State sequence (4L jug, 3L jug):\")\n    for state in reversed(path): print(state)\n    print(\"Goal reached:\",goal)\ndfs()"
+  },
+  {
+    "module": 1,
+    "number": 22,
+    "question": "Train a Naïve Bayes classifier on a small dataset, then discuss one possible source of bias or class imbalance in that dataset.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.naive_bayes import GaussianNB\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nprint(\"Training samples:\",len(X_train)); print(\"Testing samples:\",len(X_test))\nmodel=GaussianNB().fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred); print(\"Accuracy:\",accuracy_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 23,
+    "question": "Build a Decision Tree classifier and assess possible bias and class imbalance in the selected dataset.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nmodel=DecisionTreeClassifier(random_state=42).fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred); print(\"Accuracy:\",accuracy_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 24,
+    "question": "Demonstrate a basic machine-learning workflow: load a dataset with Pandas, preprocess it, split it, train a classifier and report training/testing accuracy.",
+    "kind": "python",
+    "answer": "import pandas as pd\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); df=pd.DataFrame(d.data,columns=d.feature_names); df[\"target\"]=d.target\nX,y=df.drop(columns=\"target\"),df[\"target\"]\nX_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=42,stratify=y)\nmodel=make_pipeline(SimpleImputer(strategy=\"median\"),DecisionTreeClassifier(random_state=42)).fit(X_train,y_train)\nprint(\"Training accuracy:\",accuracy_score(y_train,model.predict(X_train)))\nprint(\"Testing accuracy:\",accuracy_score(y_test,model.predict(X_test)))"
+  },
+  {
+    "module": 1,
+    "number": 25,
+    "question": "Implement Linear Regression using scikit-learn on a suitable regression dataset and evaluate the model.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_diabetes\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_absolute_error, r2_score\nd=load_diabetes(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42)\nmodel=LinearRegression().fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred[:5]); print(\"Actual:\",y_test[:5])\nprint(\"MAE:\",mean_absolute_error(y_test,pred)); print(\"R2:\",r2_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 26,
+    "question": "Implement a Decision Tree classifier using the Iris dataset or another suitable dataset.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.metrics import accuracy_score\nd=load_iris(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42,stratify=d.target)\nmodel=DecisionTreeClassifier(random_state=42).fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred); print(\"Accuracy:\",accuracy_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 27,
+    "question": "Implement Decision Tree regression on a suitable regression dataset and evaluate its predictions.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_diabetes\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.tree import DecisionTreeRegressor\nfrom sklearn.metrics import mean_absolute_error,r2_score\nd=load_diabetes(); X_train,X_test,y_train,y_test=train_test_split(d.data,d.target,test_size=0.2,random_state=42)\nmodel=DecisionTreeRegressor(max_depth=5,random_state=42).fit(X_train,y_train); pred=model.predict(X_test)\nprint(\"Predictions:\",pred[:5]); print(\"MAE:\",mean_absolute_error(y_test,pred)); print(\"R2:\",r2_score(y_test,pred))"
+  },
+  {
+    "module": 1,
+    "number": 28,
+    "question": "Select a public dataset and analyze possible bias and class imbalance. Report the class distribution and observations.",
+    "kind": "python",
+    "answer": "from sklearn.datasets import load_iris\nimport pandas as pd\nd=load_iris(); df=pd.DataFrame(d.data,columns=d.feature_names); df[\"class\"]=d.target\nprint(\"Class counts:\"); print(df[\"class\"].value_counts().sort_index())\nprint(\"Missing values:\"); print(df.isnull().sum())\nprint(\"Limitations: Iris is small and may not represent real-world populations.\")"
+  },
+  {
+    "module": 1,
+    "number": 29,
+    "question": "Create a simple table-driven agent in Python. Define its percepts, actions and table, then test it with sample inputs.",
+    "kind": "python",
+    "answer": "percepts=[(\"A\",\"Dirty\"),(\"A\",\"Clean\"),(\"B\",\"Dirty\"),(\"B\",\"Clean\")]\nactions=[\"Suck\",\"Right\",\"Suck\",\"Left\"]; agent_table=dict(zip(percepts,actions))\nprint(agent_table)\nfor percept in percepts: print(\"Percept:\",percept,\"Action:\",agent_table[percept])"
+  },
+  {
+    "module": 2,
+    "number": 1,
+    "question": "Create a Jira Cloud project (Kanban), configure project details, and explore the project dashboard.",
+    "kind": "jira_steps",
+    "answer": "Open Jira Cloud → Projects → Create project. Choose Kanban; create the project and set its name/key. Open its board/dashboard and inspect project settings."
+  },
+  {
+    "module": 2,
+    "number": 2,
+    "question": "Create a Jira project, add team members, and assign appropriate project roles.",
+    "kind": "jira_steps",
+    "answer": "Open Project settings → People/Access. Choose Add people, select each team member, assign the requested role, save, and verify membership."
+  },
+  {
+    "module": 2,
+    "number": 3,
+    "question": "Configure issue types (Epic, Story, Task, Bug), and create project components and versions.",
+    "kind": "jira_steps",
+    "answer": "Open project settings and ensure Epic, Story, Task, Bug are available. Create required Components and Versions/Releases, then verify they appear on issues."
+  },
+  {
+    "module": 2,
+    "number": 4,
+    "question": "Create an Epic and add related issues. Assign issues to users and set priority and due dates.",
+    "kind": "jira_steps",
+    "answer": "Create an Epic. Create related Stories/Tasks and link them to the Epic. Set assignee, priority, and due date for each issue; save and verify."
+  },
+  {
+    "module": 2,
+    "number": 5,
+    "question": "Create a Jira Automation rule with a trigger, condition, and action—for example, when an issue moves to Done, send a notification or auto-assign it.",
+    "kind": "jira_steps",
+    "answer": "Open Automation → Create rule. Set trigger Issue transitioned; add condition status = Done; add action such as send notification or assign issue. Save, enable, and test."
+  },
+  {
+    "module": 2,
+    "number": 6,
+    "question": "Configure the Jira mobile app, view an issue, update its status, add a comment, and assign it to a user.",
+    "kind": "jira_steps",
+    "answer": "Install/sign in to Jira Cloud mobile app. Open an issue, change status, add a comment, change assignee, save, and verify activity/notifications."
+  },
+  {
+    "module": 2,
+    "number": 7,
+    "question": "Create a Scrum project and board, add issues to a sprint, start the sprint, and review sprint progress.",
+    "kind": "jira_steps",
+    "answer": "Create/open a Scrum project and board. Create a sprint, add backlog issues, start it, and review progress/report."
+  },
+  {
+    "module": 2,
+    "number": 8,
+    "question": "Create and configure issue types, components, and versions in a Jira project.",
+    "kind": "jira_steps",
+    "answer": "Open Project settings and configure issue types. Create components and versions/releases. Verify they are available on issues."
+  },
+  {
+    "module": 2,
+    "number": 9,
+    "question": "Create an Epic with Stories and Tasks, assign the issues, and set priority and due date.",
+    "kind": "jira_steps",
+    "answer": "Create an Epic, then Stories and Tasks. Set each child issue's parent Epic. Assign issues, set priority/due date, and verify hierarchy."
+  },
+  {
+    "module": 2,
+    "number": 10,
+    "question": "Customize a Jira workflow by adding statuses and transitions, then associate it with a project.",
+    "kind": "jira_steps",
+    "answer": "Open Jira settings → Issues → Workflows (admin access may be needed). Add statuses/transitions, publish workflow, associate it through the workflow scheme, and test."
+  },
+  {
+    "module": 2,
+    "number": 11,
+    "question": "Generate a Pie Chart or Issue Statistics report and add it to a custom Jira dashboard.",
+    "kind": "jira_steps",
+    "answer": "Open Reports/Dashboards. Add Pie Chart or Issue Statistics gadget. Choose project/saved filter and statistic, save, and verify."
+  },
+  {
+    "module": 2,
+    "number": 12,
+    "question": "Create a Jira Automation rule, test it, and enable it after verifying the trigger-condition-action sequence.",
+    "kind": "jira_steps",
+    "answer": "Create an automation rule and select trigger. Add condition/action. Test on a sample issue, inspect audit log, then enable."
+  },
+  {
+    "module": 2,
+    "number": 13,
+    "question": "Configure project roles and review the permissions granted to each role in a Jira project.",
+    "kind": "jira_steps",
+    "answer": "Open Project settings → People/Roles. Review role assignments. Open Permissions/Permission scheme and inspect actions each role can perform."
+  },
+  {
+    "module": 2,
+    "number": 14,
+    "question": "Create and configure a Jira Scrum project. Add team members and roles, create issue types and an Epic with related issues, create and start a sprint, and generate a Sprint Report.",
+    "kind": "jira_steps",
+    "answer": "Create/open Scrum project; add members/roles. Configure issue types and create Epic with related issues. Create sprint, add issues, start sprint, then open Reports → Sprint Report."
+  },
+  {
+    "module": 2,
+    "number": 15,
+    "question": "Create a Jira project and configure a custom workflow, JQL filters, a dashboard with suitable gadgets, and an automation rule. Demonstrate the configuration and test the automation.",
+    "kind": "jira_steps",
+    "answer": "Create project and configure workflow. Run JQL query and save as filter. Create dashboard and add gadgets using filter. Create/test automation and verify audit log."
+  },
+  {
+    "module": 2,
+    "number": 16,
+    "question": "Create a Jira Cloud account, explore the dashboard, create a company-managed Scrum or Kanban project, and configure its details.",
+    "kind": "jira_steps",
+    "answer": "Sign in/create Jira Cloud account and explore dashboard. Create a company-managed Scrum/Kanban project, set name/key/details, and inspect board."
+  },
+  {
+    "module": 2,
+    "number": 17,
+    "question": "Add team members to a Jira project and assign suitable project roles.",
+    "kind": "jira_steps",
+    "answer": "Open Project settings → People/Access. Add members, assign suitable roles, and verify."
+  },
+  {
+    "module": 2,
+    "number": 18,
+    "question": "Create and configure the Epic, Story, Task, and Bug issue types. Create project components and versions.",
+    "kind": "jira_steps",
+    "answer": "Ensure Epic, Story, Task, Bug are configured. Create components and versions. Open an issue, select component/fix version, save, and verify."
+  },
+  {
+    "module": 2,
+    "number": 19,
+    "question": "Install and configure the Jira mobile app. View an issue and update its status, comment, and assignee.",
+    "kind": "jira_steps",
+    "answer": "Install Jira mobile and sign in. Open issue, update status, add comment, change assignee, save, and verify activity."
+  },
+  {
+    "module": 2,
+    "number": 20,
+    "question": "Create a company-managed Scrum project and add an Epic with at least two Stories and one Task.",
+    "kind": "jira_steps",
+    "answer": "Create company-managed Scrum project. Create an Epic, at least two Stories, and one Task. Link children to Epic and verify hierarchy."
+  },
+  {
+    "module": 2,
+    "number": 21,
+    "question": "Create and save a JQL filter for issues with a selected priority and status, then verify the results.",
+    "kind": "jira_steps",
+    "answer": "Open Filters → Advanced issue search. Use: project = DEMO AND priority = High AND status = \"In Progress\" ORDER BY created DESC (replace DEMO with your project key). Run, verify, and save."
+  },
+  {
+    "module": 2,
+    "number": 22,
+    "question": "Create a custom dashboard and add gadgets that display issue statistics.",
+    "kind": "jira_steps",
+    "answer": "Open Dashboards → Create dashboard. Add Pie Chart, Filter Results, or Issue Statistics gadgets. Configure project/saved filter and save."
+  },
+  {
+    "module": 2,
+    "number": 23,
+    "question": "Configure project roles and review how permissions control access to project activities.",
+    "kind": "jira_steps",
+    "answer": "Open Project settings → People/Roles. Review membership and permission scheme for browse, create, edit, assign, and transition actions."
+  },
+  {
+    "module": 2,
+    "number": 24,
+    "question": "Create an automation rule that assigns an issue when it is created or moved to a specified status, then test it.",
+    "kind": "jira_steps",
+    "answer": "Create automation with Issue created or Issue transitioned trigger. Add status condition if needed; action = Assign issue. Save, enable, test, inspect audit log."
+  },
+  {
+    "module": 2,
+    "number": 25,
+    "question": "Create a Scrum board, add a sprint, move issues into it, start the sprint, and view its report.",
+    "kind": "jira_steps",
+    "answer": "Open Scrum board/backlog. Create sprint, move issues into it, start sprint, and open Reports → Sprint Report."
+  },
+  {
+    "module": 2,
+    "number": 26,
+    "question": "Create project components and versions, then associate relevant issues with them.",
+    "kind": "jira_steps",
+    "answer": "Create components and versions in Project settings. Open issue, select component and fix version, save, and verify."
+  },
+  {
+    "module": 2,
+    "number": 27,
+    "question": "Use Jira filters and issue statistics to summarize issues by status, assignee, or priority.",
+    "kind": "jira_steps",
+    "answer": "Open issue search and filter by project/status/assignee/priority. Save filter if required. Use Issue Statistics/dashboard gadget to group results."
+  },
+  {
+    "module": 2,
+    "number": 28,
+    "question": "Use the Jira mobile app to view and update an issue, add a comment, assign it, and check notifications.",
+    "kind": "jira_steps",
+    "answer": "Install/sign in to Jira mobile. Open issue, update status, add comment, assign to user, and verify activity/notifications."
+  },
+  {
+    "module": 2,
+    "number": 29,
+    "question": "A. Create a Jira Cloud account and explore the dashboard. B. Create a Company-managed Scrum/Kanban Project. C. Configure project details.",
+    "kind": "jira_steps",
+    "answer": "A. Sign in/create Jira Cloud account and explore dashboard. B. Create company-managed Scrum/Kanban project. C. Configure project name/key/details and inspect board."
+  },
+  {
+    "module": 2,
+    "number": 30,
+    "question": "A. Add team members. B. Assign roles.",
+    "kind": "jira_steps",
+    "answer": "Open project People/Access. Add team members, assign appropriate roles, and verify."
+  },
+  {
+    "module": 2,
+    "number": 31,
+    "question": "A. Design a custom workflow. B. Add transitions and conditions. C. Publish and associate workflow with a project.",
+    "kind": "jira_steps",
+    "answer": "Open workflow administration and create/edit workflow. Add statuses, transitions, and conditions. Publish and associate with project's workflow scheme; test transitions."
+  },
+  {
+    "module": 2,
+    "number": 32,
+    "question": "A. Create and configure Scrum Board. B. Create and start a Sprint. C. Complete Sprint and generate Sprint Report.",
+    "kind": "jira_steps",
+    "answer": "Create/configure Scrum board. Create sprint, add issues, and start it. Complete sprint and open Sprint Report."
+  },
+  {
+    "module": 2,
+    "number": 33,
+    "question": "A. Generate Burndown Chart and Velocity Chart. B. Create Pie Chart / Issue Statistics Report. C. Create a Custom Dashboard with gadgets.",
+    "kind": "jira_steps",
+    "answer": "Open Reports and inspect Burndown/Velocity charts. Create Pie Chart or Issue Statistics report/gadget. Create dashboard and configure gadgets."
+  },
+  {
+    "module": 2,
+    "number": 34,
+    "question": "A. View and modify Project Permission Scheme. B. Configure Project Roles and assign permissions.",
+    "kind": "jira_steps",
+    "answer": "Open project's permission scheme (admin access may be needed) and review/modify as required. Configure roles, assign users, and verify each role's permissions."
+  }
+]

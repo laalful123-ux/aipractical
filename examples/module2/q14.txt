@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 14
+Create and configure a Jira Scrum project. Add team members and roles, create issue types and an Epic with related issues, create and start a sprint, and generate a Sprint Report.
+
+STEPS
+Create/open Scrum project; add members/roles. Configure issue types and create Epic with related issues. Create sprint, add issues, start sprint, then open Reports → Sprint Report.

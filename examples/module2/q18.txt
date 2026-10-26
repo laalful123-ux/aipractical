@@ -1,0 +1,5 @@
+MODULE 2 — QUESTION 18
+Create and configure the Epic, Story, Task, and Bug issue types. Create project components and versions.
+
+STEPS
+Ensure Epic, Story, Task, Bug are configured. Create components and versions. Open an issue, select component/fix version, save, and verify.
